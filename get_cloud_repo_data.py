@@ -93,7 +93,7 @@ if __name__ == "__main__":
 
                 try:
                     if owner.status_code == 200 and contributors.status_code == 200 and topics.status_code == 200:
-                        repo_details = Repo(name, contributors.json(), topics.json())
+                        repo_details = Repo(name, owner.json(), contributors.json(), topics.json())
                         repo_list.append(repo_details.__dict__)
                 except:
                     print("Response code not 200, repo: ", name)
