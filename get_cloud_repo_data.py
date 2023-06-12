@@ -34,12 +34,10 @@ class Repo(object):
 def get_data(repo_name):
     contrib_url = gh_contributors_url + repo_name + "/contributors"
     topics_url = gh_contributors_url + repo_name + "/topics"
-    owner_url = gh_contributors_url + repo_name + "/owner"
 
     contrib_resp = session.get(contrib_url, headers=headers)
     topics_resp = session.get(topics_url, headers=headers)
-    owner_resp = session.get(owner_url, headers=headers)
-    return owner_resp, contrib_resp, topics_resp
+    return contrib_resp, topics_resp
 
 def prep_files(path):
     with open(path, 'r') as f:
@@ -86,14 +84,18 @@ if __name__ == "__main__":
         for repo in resp:
             try:
                 name = repo['name']
-                owner, contributors, topics = get_data(name) # returns contributors and topics for each repo
+                contributors, topics = get_data(name) # returns contributors and topics for each repo
 
                 try:
-                    if owner.status_code == 200 and contributors.status_code == 200 and topics.status_code == 200:
-                        repo_details = Repo(name, owner.json(), contributors.json(), topics.json())
+                    if contributors.status_code == 200 and topics.status_code == 200:
+                        try:
+                            owner = repo['owner']
+                        except:
+                            print("no owner for repo: ", name)
+                            owner = ""
+                        repo_details = Repo(name, owner, contributors.json(), topics.json())
                         repo_list.append(repo_details.__dict__)
                     else:
-                        print("owner code: ", owner.status_code)
                         print("contrib code: ", contributors.status_code)
                         print("topics code: ", topics.status_code)
                 except:
