@@ -1,6 +1,7 @@
 import json
 import requests
 import sys
+import os
 
 
 gh_base_url = "https://api.github.com/"
