@@ -22,20 +22,24 @@ class Repo(object):
     name = None
     contributors = None
     topics = None
+    owner = None
 
     def __init__(self, name, contributors, topics):
         self.name = name
         self.contributors = contributors
         self.topics = topics
+        self.owner = owner
 
 
 def get_data(repo_name):
     contrib_url = gh_contributors_url + repo_name + "/contributors"
     topics_url = gh_contributors_url + repo_name + "/topics"
+    owner_url = gh_contributors_url + repo_name + "/owner"
 
     contrib_resp = session.get(contrib_url, headers=headers)
     topics_resp = session.get(topics_url, headers=headers)
-    return contrib_resp, topics_resp
+    owner_resp = session.get(owner_url, headers=headers)
+    return owner_resp, contrib_resp, topics_resp
 
 def prep_files(path):
     with open(path, 'r') as f:
@@ -85,10 +89,10 @@ if __name__ == "__main__":
                 print("------------------")
                 print("repo name: ", name)
                 print(repo)
-                contributors, topics = get_data(name) # returns contributors and topics for each repo
+                owner, contributors, topics = get_data(name) # returns contributors and topics for each repo
 
                 try:
-                    if contributors.status_code == 200 and topics.status_code == 200:
+                    if owner.status_code == 200 contributors.status_code == 200 and topics.status_code == 200:
                         repo_details = Repo(name, contributors.json(), topics.json())
                         repo_list.append(repo_details.__dict__)
                 except:
