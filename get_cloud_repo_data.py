@@ -92,6 +92,9 @@ if __name__ == "__main__":
                         print("1")
                         owner = repo['owner']
                         print("2")
+                        print("owner type: ", type(owner))
+                        print("contributors type: ", type(contributors))
+                        print("topics type: ", type(topics))
                         repo_details = Repo(name, owner.json(), contributors.json(), topics.json())
                         print("3. got repo details")
                         repo_list.append(repo_details.__dict__)
@@ -100,13 +103,13 @@ if __name__ == "__main__":
                         print("repo name : ", name)
                         print("contrib code: ", contributors.status_code)
                         print("topics code: ", topics.status_code)
-                    print("-----------------------------")
+                    
                 except:
                     print("Response code not 200, repo: ", name)
             except:
                 print("Error with repo: ", repo)
                 
-                            
+        print("-----------------------------")
     
         end = time.time()
         elapsed = end - start
