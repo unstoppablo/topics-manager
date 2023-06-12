@@ -84,6 +84,7 @@ if __name__ == "__main__":
         for repo in resp:
             try:
                 name = repo['name']
+                print(resp)
                 # print(repo)
                 contributors, topics = get_data(name) # returns contributors and topics for each repo
 
