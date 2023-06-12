@@ -96,7 +96,7 @@ if __name__ == "__main__":
         
         existing_topics = repo_dict[target_repo][1]  # returns existing topics
         repo_owner = repo_dict[target_repo][0]
-        add_topics(target_repo, topics, repo_dict, existing_topics, repo_owner)
+        add_topics(target_repo, topics, repo_dict, existing_topics)
         
         topics_resp = test_obtained(target_repo)
         if topics_resp.status_code == 200:
