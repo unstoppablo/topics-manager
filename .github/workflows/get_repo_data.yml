@@ -1,0 +1,38 @@
+name: Get Cloud repo data
+# test comment
+on:
+  workflow_dispatch:
+
+jobs:
+  run_script:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      # checks out the repo content to GitHub runner
+      - name: checkout repo content
+        uses: actions/checkout@v3
+      - name: setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.8.1" # install python version needed
+      - name: install python packages
+        run: |
+          python -m pip install --upgrade pip --user
+          python -m pip install requests --user
+          python -m pip install pandas --user
+
+      - name: Git Config User
+        run: |
+          git config --global user.email "plabbate@chapman.edu"
+          git config --global user.name "Pablo Labbate"
+
+      - name: Getting GitHub CLOUD Contributor Data
+        env:
+          PL_PAT: ${{ secrets.PL_PAT }}
+        run: |
+          git status
+          python get_cloud_repo_data.py
+          git add .
+          git commit -m "Obtained GitHub CLOUD data"
+          git push
