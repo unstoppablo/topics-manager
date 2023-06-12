@@ -53,7 +53,7 @@ def get_repo_and_topics_from_args(repos_dict):
     
     repo_name = sys.argv[1]
 
-    if target_repo in repos_dict:
+    if repo_name in repos_dict:
 
         topics = sys.argv[2:]
         
