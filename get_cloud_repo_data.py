@@ -95,7 +95,7 @@ if __name__ == "__main__":
                         print("owner type: ", type(owner))
                         print("contributors type: ", type(contributors))
                         print("topics type: ", type(topics))
-                        repo_details = Repo(name, owner.json(), contributors.json(), topics.json())
+                        repo_details = Repo(name, owner, contributors.json(), topics.json())
                         print("3. got repo details")
                         repo_list.append(repo_details.__dict__)
                         print("4. repo details appended to repo list")
