@@ -86,15 +86,16 @@ if __name__ == "__main__":
         for repo in resp:
             try:
                 name = repo['name']
-                print("------------------")
-                print("repo name: ", name)
-                print(repo)
                 owner, contributors, topics = get_data(name) # returns contributors and topics for each repo
 
                 try:
                     if owner.status_code == 200 and contributors.status_code == 200 and topics.status_code == 200:
                         repo_details = Repo(name, owner.json(), contributors.json(), topics.json())
                         repo_list.append(repo_details.__dict__)
+                    else:
+                        print("owner code: ", owner.status_code)
+                        print("contrib code: ", contributors.status_code)
+                        print("topics code: ", topics.status_code)
                 except:
                     print("Response code not 200, repo: ", name)
             except:
