@@ -92,7 +92,7 @@ if __name__ == "__main__":
                 owner, contributors, topics = get_data(name) # returns contributors and topics for each repo
 
                 try:
-                    if owner.status_code == 200 contributors.status_code == 200 and topics.status_code == 200:
+                    if owner.status_code == 200 and contributors.status_code == 200 and topics.status_code == 200:
                         repo_details = Repo(name, contributors.json(), topics.json())
                         repo_list.append(repo_details.__dict__)
                 except:
