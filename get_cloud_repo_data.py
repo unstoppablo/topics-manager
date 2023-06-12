@@ -89,14 +89,13 @@ if __name__ == "__main__":
 
                 try:
                     if contributors.status_code == 200 and topics.status_code == 200:
-                        try:
-                            owner = repo['owner']
-                        except:
-                            print("no owner for repo: ", name)
-                            owner = ""
+                        
+                        owner = repo['owner']
+                        
                         repo_details = Repo(name, owner.json(), contributors.json(), topics.json())
                         repo_list.append(repo_details.__dict__)
                     else:
+                        print("repo name : ", name)
                         print("contrib code: ", contributors.status_code)
                         print("topics code: ", topics.status_code)
                 except:
