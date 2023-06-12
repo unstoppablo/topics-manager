@@ -83,7 +83,7 @@ if __name__ == "__main__":
             try:
                 name = repo['name']
                 print("repo name: ", name)
-                contributors, topics = get_data(name). # returns contributors and topics for each repo
+                contributors, topics = get_data(name) # returns contributors and topics for each repo
 
                 try:
                     if contributors.status_code == 200 and topics.status_code == 200:
