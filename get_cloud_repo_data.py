@@ -94,7 +94,7 @@ if __name__ == "__main__":
                         except:
                             print("no owner for repo: ", name)
                             owner = ""
-                        repo_details = Repo(name, owner, contributors.json(), topics.json())
+                        repo_details = Repo(name, owner.json(), contributors.json(), topics.json())
                         repo_list.append(repo_details.__dict__)
                     else:
                         print("contrib code: ", contributors.status_code)
