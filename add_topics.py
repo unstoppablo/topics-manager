@@ -75,7 +75,8 @@ def add_topics(repo, new_topics, existing_topics, repo_owner):
         session.put(gh_add_topics_url+repo+"/topics", headers=headers, json=data)
     else:
         print("0 topics provided. Quitting.")
-        break
+        sys.exit(1)
+        
 
 def test_obtained(target_repo):
     topics_url = gh_contributors_url + repo_name + "/topics"
