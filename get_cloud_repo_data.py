@@ -90,23 +90,24 @@ if __name__ == "__main__":
 
                 try:
                     if contributors.status_code == 200 and topics.status_code == 200:
-                        
+                        print("1")
                         owner = repo['owner']
-                        
+                        print("2")
                         repo_details = Repo(name, owner.json(), contributors.json(), topics.json())
+                        print("3. got repo details")
                         repo_list.append(repo_details.__dict__)
+                        print("4. repo details appended to repo list")
                     else:
                         print("repo name : ", name)
                         print("contrib code: ", contributors.status_code)
                         print("topics code: ", topics.status_code)
+                    print("-----------------------------")
                 except:
                     print("Response code not 200, repo: ", name)
             except:
                 print("Error with repo: ", repo)
                 
-            
-            print("__________________________")
-                
+                            
     
         end = time.time()
         elapsed = end - start
