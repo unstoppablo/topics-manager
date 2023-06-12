@@ -95,6 +95,8 @@ if __name__ == "__main__":
         print(topics)
         
         existing_topics = repo_dict[target_repo][1]  # returns existing topics
+        print("existing topics: ", existing_topics)
+        print("type: ", type(existing_topics))
         repo_owner = repo_dict[target_repo][0]
         add_topics(target_repo, topics, existing_topics, repo_owner)
         
