@@ -7,6 +7,7 @@ import os
 gh_base_url = "https://api.github.com/"
 gh_repos_url = gh_base_url + "users/unstoppablo/repos"
 gh_add_topics_url = gh_base_url + "repos/unstoppablo/"
+gh_contributors_url = gh_base_url + "repos/unstoppablo/"
 
 session = requests.Session()
 token = os.getenv("PL_PAT")
@@ -73,7 +74,8 @@ def add_topics(repo, new_topics, existing_topics, repo_owner):
         data = {
             "topics": existing_topics
         }
-        session.put(gh_add_topics_url+repo+"/topics", headers=headers, json=data)
+        resp = session.put(gh_add_topics_url+repo+"/topics", headers=headers, json=data)
+        return resp
     else:
         print("0 topics provided. Quitting.")
         sys.exit(1)
@@ -97,7 +99,9 @@ if __name__ == "__main__":
         existing_topics = repo_dict[target_repo][1]  # returns existing topics
         
         repo_owner = repo_dict[target_repo][0]
-        add_topics(target_repo, topics, existing_topics['names'], repo_owner)
+        add_topics_resp = add_topics(target_repo, topics, existing_topics['names'], repo_owner)
+        print("Attempted adding topics, resp code: ")
+        print(add_topics_resp)
         
         topics_resp = test_obtained(target_repo)
         if topics_resp.status_code == 200:
