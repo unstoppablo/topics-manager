@@ -67,14 +67,16 @@ def get_repo_and_topics_from_args(repos_dict):
         return -1, -1
 
 def add_topics(repo, new_topics, existing_topics, repo_owner):
+    existing_topics = set(existing_topics). # changing to set to avoid duplicates
     for topic in new_topics:
-        existing_topics.append(topic)
-    
+        existing_topics.add(topic)
+
+    existing_topics = list(existing_topics)
     if len(existing_topics) > 0:
         data = {
             "topics": existing_topics
         }
-        resp = session.put(gh_add_topics_url+repo+"/topics", headers=headers, json=data)
+        resp = session.put(gh_add_topics_url+repo+"topics", headers=headers, json=data)
         return resp
     else:
         print("0 topics provided. Quitting.")
