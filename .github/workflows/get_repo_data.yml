@@ -5,7 +5,7 @@ on:
 
 jobs:
   run_script:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     permissions:
       contents: write
     steps:
