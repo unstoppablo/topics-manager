@@ -24,7 +24,7 @@ class Repo(object):
     topics = None
     owner = None
 
-    def __init__(self, name, contributors, topics):
+    def __init__(self, name, owner, contributors, topics):
         self.name = name
         self.contributors = contributors
         self.topics = topics
@@ -84,7 +84,7 @@ if __name__ == "__main__":
         for repo in resp:
             try:
                 name = repo['name']
-                print(repo)
+                # print(repo)
                 contributors, topics = get_data(name) # returns contributors and topics for each repo
 
                 try:
