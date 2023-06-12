@@ -74,9 +74,9 @@ def add_topics(repo, new_topics, existing_topics, repo_owner):
     existing_topics = list(existing_topics)
     if len(existing_topics) > 0:
         data = {
-            "topics": existing_topics
+            "names": existing_topics
         }
-        resp = session.put(gh_add_topics_url+repo+"topics", headers=headers, json=data)
+        resp = session.put(gh_add_topics_url+repo+"/topics", headers=headers, json=data)
         return resp
     else:
         print("0 topics provided. Quitting.")
@@ -84,7 +84,7 @@ def add_topics(repo, new_topics, existing_topics, repo_owner):
         
 
 def test_obtained(target_repo):
-    topics_url = gh_contributors_url + repo_name + "/topics"
+    topics_url = gh_contributors_url + target_repo + "/topics"
     topics_resp = session.get(topics_url, headers=headers)
     return topics_resp
 
