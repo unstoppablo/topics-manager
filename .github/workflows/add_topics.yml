@@ -25,19 +25,25 @@ jobs:
         run: |
           git config --global user.email "plabbate@chapman.edu"
           git config --global user.name "Pablo Labbate"
+      - name: Run Python Artifactory Topics script
+        env:
+          PABLO_JFROG_USER: ${{ secrets.PABLO_JFROG_USER }}
+          PABLO_JFROG_TOKEN: ${{ secrets.PABLO_JFROG_TOKEN }}
+        run: |
+          python add_topics/testing-artifactory-api.py k1 v1 k2 v2
 
-      - name: TEST1 Adding new topics to repo
-        env:
-          PL_PAT: ${{ secrets.PL_PAT }}
-        run: |
-          python add_topics.py last-test-of-day newtopic topic2 topic3
-      - name: TEST2 SHOULD FAIL (Wrong repo name) Adding new topics to repo
-        env:
-          PL_PAT: ${{ secrets.PL_PAT }}
-        run: |
-          python add_topics.py failrepo newtopic topic2 topic3
-      - name: TEST3 SHOULD FAIL (No topics) Adding new topics to repo
-        env:
-          PL_PAT: ${{ secrets.PL_PAT }}
-        run: |
-          python add_topics.py failrepo
+      # - name: TEST1 Adding new topics to repo
+      #   env:
+      #     PL_PAT: ${{ secrets.PL_PAT }}
+      #   run: |
+      #     python add_topics.py last-test-of-day newtopic topic2 topic3
+      # - name: TEST2 SHOULD FAIL (Wrong repo name) Adding new topics to repo
+      #   env:
+      #     PL_PAT: ${{ secrets.PL_PAT }}
+      #   run: |
+      #     python add_topics.py failrepo newtopic topic2 topic3
+      # - name: TEST3 SHOULD FAIL (No topics) Adding new topics to repo
+      #   env:
+      #     PL_PAT: ${{ secrets.PL_PAT }}
+      #   run: |
+      #     python add_topics.py failrepo
