@@ -102,12 +102,12 @@ if __name__ == "__main__":
             print("You wish to add the following topics to: ", target_repo)
             print(topics)
             
-            topics_response = get_existing_topics(target_repo)  # returns existing topics
+            topics_resp = get_existing_topics(target_repo)  # returns existing topics
             if topics_resp.status_code == 200:
                 existing_topics = topics_resp.json()['names']  # returns list of topics
             else:
                 existing_topics = []
-            
+            print("Existing topics: ", existing_topics)
             add_topics_resp = add_topics(target_repo, topics, existing_topics['names'], )
             print("Attempted adding topics, resp code: ")
             print(add_topics_resp)
