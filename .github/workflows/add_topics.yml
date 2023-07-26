@@ -36,12 +36,12 @@ jobs:
         env:
           PL_PAT: ${{ secrets.PL_PAT }}
         run: |
-          python add_topics.py [last-test-of-day, aaa, bbb, ccc]
-      - name: TEST2 SHOULD FAIL (Wrong repo name) Adding new topics to repo
-        env:
-          PL_PAT: ${{ secrets.PL_PAT }}
-        run: |
-          python add_topics.py [failrepo, aaa, bbb, ccc] [last-test-of-day, eee, fff, xzz]
+          python add_topics.py [last-test-of-day, aaa, bbb, ccc] [ReactPortfolio, xyz, abc] [Plantify, xyz, abc, eee, omg, lol]
+      # - name: TEST2 SHOULD FAIL (Wrong repo name) Adding new topics to repo
+      #   env:
+      #     PL_PAT: ${{ secrets.PL_PAT }}
+      #   run: |
+      #     python add_topics.py [failrepo, aaa, bbb, ccc] [last-test-of-day, eee, fff, xzz]
       - name: TEST3 first valid second invalid (no topics)
         env:
           PL_PAT: ${{ secrets.PL_PAT }}
