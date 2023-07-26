@@ -106,9 +106,13 @@ if __name__ == "__main__":
             if topics_resp.status_code == 200:
                 existing_topics = topics_resp.json()['names']  # returns list of topics
             else:
-                existing_topics = []
+                # existing_topics = []
+                print("Response code not 200 for ", target_repo)
+                print("Code: ", topics_resp)
+                sys.exit(1)
+            
             print("Existing topics: ", existing_topics)
-            add_topics_resp = add_topics(target_repo, topics, existing_topics['names'], )
+            add_topics_resp = add_topics(target_repo, topics, existing_topics)
             print("Attempted adding topics, resp code: ")
             print(add_topics_resp)
             
