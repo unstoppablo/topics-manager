@@ -1,6 +1,5 @@
 import json
 import sys
-from github import Github, Auth
 import os
 import time
 from datetime import datetime, timedelta
